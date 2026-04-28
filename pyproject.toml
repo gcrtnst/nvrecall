@@ -13,3 +13,20 @@ keywords = ["niconico", "nicovideo"]
 
 [project.urls]
 source = "https://github.com/gcrtnst/nvrecall/"
+
+[dependency-groups]
+dev = ["ruff", "pyright"]
+
+[tool.ruff]
+exclude = []
+respect-gitignore = true
+
+[tool.ruff.lint]
+select = ["F", "ANN0", "ANN2", "ANN4", "RUF1", "RUF2"]
+
+[tool.pyright]
+include = ["*.py", "src/**/*.py", "tests/**/*.py"]
+extraPaths = ["src/"]
+pythonPlatform = "All"
+typeCheckingMode = "strict"
+reportPrivateUsage = "none"
