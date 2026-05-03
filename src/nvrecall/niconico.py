@@ -162,10 +162,6 @@ class Niconico:
         return wrapper
 
 
-class NiconicoUnauthorizedError(Exception):
-    pass
-
-
 class NiconicoLoginError(Exception):
     pass
 
@@ -178,3 +174,7 @@ class NiconicoInvalidCredentialsError(NiconicoLoginError):
     def __init__(self, mail_tel: str, *args: object) -> None:
         super().__init__(mail_tel, *args)
         self.mail_tel: typing.Final[str] = mail_tel
+
+
+class NiconicoUnauthorizedError(Exception):
+    pass
