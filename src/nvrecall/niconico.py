@@ -139,7 +139,7 @@ class Niconico:
         raise NiconicoLoginError
 
     @staticmethod
-    def _autologin[S: Niconico, **P, T](
+    def _auto_login[S: Niconico, **P, T](
         func: typing.Callable[typing.Concatenate[S, P], T],
     ) -> typing.Callable[typing.Concatenate[S, P], T]:
         @functools.wraps(func)

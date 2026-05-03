@@ -308,7 +308,7 @@ class TestNiconicoAutoLogin(unittest.TestCase):
             return in_impl_ret
 
         with respx.mock(assert_all_mocked=True):
-            got_impl_ret = n._autologin(impl)(n, *in_impl_args, **in_impl_kwargs)
+            got_impl_ret = n._auto_login(impl)(n, *in_impl_args, **in_impl_kwargs)
 
         self.assertEqual(got_impl_args, in_impl_args)
         self.assertEqual(got_impl_kwargs, in_impl_kwargs)
@@ -368,7 +368,7 @@ class TestNiconicoAutoLogin(unittest.TestCase):
                 data={"mail_tel": "mail@example.com", "password": "password"},
             ).mock(side_effect=login)
 
-            got_impl_ret = n._autologin(impl)(n, *in_impl_args, **in_impl_kwargs)
+            got_impl_ret = n._auto_login(impl)(n, *in_impl_args, **in_impl_kwargs)
 
         self.assertEqual(got_impl_args, in_impl_args)
         self.assertEqual(got_impl_kwargs, in_impl_kwargs)
@@ -451,7 +451,7 @@ class TestNiconicoAutoLogin(unittest.TestCase):
                 data={"mail_tel": "mail@example.com", "password": "password"},
             ).mock(side_effect=login)
 
-            got_impl_ret = n._autologin(impl)(n, *in_impl_args, **in_impl_kwargs)
+            got_impl_ret = n._auto_login(impl)(n, *in_impl_args, **in_impl_kwargs)
 
         self.assertEqual(got_impl_args, in_impl_args)
         self.assertEqual(got_impl_kwargs, in_impl_kwargs)
@@ -501,7 +501,7 @@ class TestNiconicoAutoLogin(unittest.TestCase):
             # "user_session" exists in the jar. The occurrence of NiconicoLoginError
             # indicates that a login attempt was made.
             with self.assertRaises(nvrecall.niconico.NiconicoLoginError):
-                n._autologin(lambda self: None)(n)
+                n._auto_login(lambda self: None)(n)
 
     def test_exc_unauthorized(self) -> None:
         now = datetime.datetime.now().astimezone()
@@ -544,7 +544,7 @@ class TestNiconicoAutoLogin(unittest.TestCase):
             ).mock(side_effect=login)
 
             with self.assertRaises(nvrecall.niconico.NiconicoUnauthorizedError):
-                n._autologin(impl)(n)
+                n._auto_login(impl)(n)
 
         self.assertEqual(login_count, 1)
         self.assertEqual(impl_count, 1)
