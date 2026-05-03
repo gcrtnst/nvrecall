@@ -4,18 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nvrecall"
-version = "0.1.0"
-requires-python = ">= 3.14"
+dynamic = ["version"]
 authors = [{name = "gcrtnst", email = "52910071+gcrtnst@users.noreply.github.com"}]
 license = "Unlicense"
 license-files = ["LICENSE"]
 keywords = ["niconico", "nicovideo"]
 
+requires-python = ">= 3.14"
+dependencies = ["httpx[http2]"]
+
 [project.urls]
 source = "https://github.com/gcrtnst/nvrecall/"
 
 [dependency-groups]
-dev = ["ruff", "pyright"]
+dev = ["respx", "ruff", "pyright"]
+
+[tool.setuptools.dynamic]
+version = {attr = "nvrecall.__version__"}
 
 [tool.ruff]
 exclude = []
